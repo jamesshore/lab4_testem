@@ -1,4 +1,5 @@
 {
+	"before_tests": "./jake.sh lint && ./node_modules/.bin/browserify -h",
 	"framework": "mocha",
   "src_files": [
 	  "node_modules/expect.js/expect.js",

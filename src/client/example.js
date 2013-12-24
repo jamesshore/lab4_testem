@@ -14,6 +14,6 @@ var example = {};
 		else {
 			field.setAttribute("class", example.REQUIRED_FIELD_CLASS);
 		}
-	};
+	}
 
 }());
