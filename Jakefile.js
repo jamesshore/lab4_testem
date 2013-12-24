@@ -16,10 +16,12 @@
 	var lint = require("./build/util/lint_runner.js");
 	var nodeunit = require("./build/util/nodeunit_runner.js");
 	var karma = require("./build/util/karma_runner.js");
+	var testem = require("./build/util/testem_runner.js");
 
 	desc("Lint and test");
 	task("default", ["lint", "test"], function() {
 		console.log("\n\nOK");
+		process.exit();
 	});
 
 	desc("Start Karma server -- run this first");
@@ -44,7 +46,8 @@
 
 	desc("Test browser code");
 	task("testClient", function() {
-		karma.runTests(REQUIRED_BROWSERS, complete, fail);
+//		karma.runTests(REQUIRED_BROWSERS, complete, fail);
+		testem.runTests(REQUIRED_BROWSERS, complete, fail);
 	}, {async: true});
 
 	function nodeFilesToTest() {
