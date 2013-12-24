@@ -24,6 +24,11 @@ To run the automated build:
 3. Run `./jake.sh` (Unix/Mac) or `jake` (Windows).
 
 
+Note
+----
+Due to a ridiculously deep dependency tree (thanks to lodash), this code may not work on all file systems, including Windows.
+
+
 License
 -------
 
