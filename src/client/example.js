@@ -12,7 +12,7 @@ var example = {};
 			field.removeAttribute("class");
 		}
 		else {
-			field.setAttribute("classd", example.REQUIRED_FIELD_CLASS);
+			field.setAttribute("class", example.REQUIRED_FIELD_CLASS);
 		}
 	};
 

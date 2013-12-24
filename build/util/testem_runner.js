@@ -2,42 +2,15 @@
 (function() {
 	"use strict";
 
-	var DevApp = require("testem/lib/dev");
+	var Testem = require("testem/lib/api");
 	var Config = require("testem/lib/config");
 
 	exports.runTests = function(requiredBrowsers, success, fail) {
-		var browsers = 0;
-		var passed = 0;
-		var failed = 0;
-		var allRunners = 0;
-
-		var config = new Config("dev", {});
-
-		var app = new DevApp(config, function() {
-			console.log("Finalizer called");
-			success();
+		var testem = new Testem();
+		testem.startCI({}, function(failed) {
+			if (failed) fail("Testem failed");
+			else success();
 		});
-
-		app.on("all-test-results", function(results, browser) {
-			browsers++;
-			passed += results.get("passed");
-			failed += results.get("failed");
-		});
-
-		app.on("all-runners-complete", function() {
-			allRunners++;
-			console.log("ALL RUNNERS COMPLETE", allRunners);
-			console.log("BROWSERS RUN", browsers);
-			console.log("PASSED", passed);
-			console.log("FAILED", failed);
-
-			browsers = 0;
-			passed = 0;
-			failed = 0;
-//			if (failed === 0) app.quit();
-		});
-
-		app.start();
 	};
 
 	function checkRequiredBrowsers(requiredBrowsers, stdout) {
